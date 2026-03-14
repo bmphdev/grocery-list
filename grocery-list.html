@@ -217,7 +217,8 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             const endpoint = "https://www.marmiton.org/recettes/menu-de-la-semaine.aspx";
-            const proxyUrl = "https://corsproxy.io/?url=" + encodeURIComponent(endpoint);
+          //  const proxyUrl = "https://corsproxy.io/?url=" + encodeURIComponent(endpoint);
+            const proxyUrl = "https://proxy.corsfix.com/?" + endpoint;
 
             fetch(proxyUrl)
                 .then(response => {
@@ -281,7 +282,8 @@
                     if (loaderText) loaderText.textContent = "Fetching ingredients for " + allRecipes.length + " recipes...";
 
                     const fetchPromises = allRecipes.map(recipe => {
-                        const recipeProxyUrl = "https://corsproxy.io/?url=" + encodeURIComponent(recipe.url);
+                      //  const recipeProxyUrl = "https://corsproxy.io/?url=" + encodeURIComponent(recipe.url);
+                        const recipeProxyUrl = "https://proxy.corsfix.com/?" + recipe.url;
                         return fetch(recipeProxyUrl)
                             .then(res => res.ok ? res.text() : "")
                             .then(recipeHtml => {
